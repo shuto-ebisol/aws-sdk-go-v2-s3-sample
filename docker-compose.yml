@@ -1,0 +1,13 @@
+version: '3'
+ 
+services:
+  # LocalStack
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - 4566:4566 # サービスへのアクセスポートは4566
+    environment:
+      SERVICES: s3 # 使いたいAWSサービスカンマ区切りで設定する
+      DEFAULT_REGION: ap-northeast-1 # リージョンを設定
+    volumes:
+      - ./localstack:/docker-entrypoint-initaws.d
